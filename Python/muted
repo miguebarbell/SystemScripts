@@ -1,0 +1,14 @@
+#!/bin/python
+import subprocess
+
+def get_mute():
+    stat = "amixer get Master | tail -n1 | egrep -o '\[on\]|\[off\]'"
+    res = subprocess.check_output(stat, shell=True)
+    if 'off' in str(res) :
+        # print('M')
+        print('')
+    else:
+        # print('+')
+        print('奄')
+get_mute()
+

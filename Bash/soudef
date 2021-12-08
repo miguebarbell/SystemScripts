@@ -1,0 +1,2 @@
+#!/bin/bash
+pulsemixer --id `pulsemixer --list-sources | grep Default | awk '{print $3}' | sed 's/,//'` --toggle-mute

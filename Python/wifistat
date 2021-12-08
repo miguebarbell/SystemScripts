@@ -1,0 +1,12 @@
+#!/usr/bin/python
+import subprocess
+
+def getWifiState():
+    stat = "iwconfig wlp0s20f3 | egrep Tx-Power="
+    resStat = subprocess.check_output(stat, shell=True)
+    if 'off' in str(resStat) :
+        print('PowerOFF')
+    else:
+        print(',')
+
+getWifiState()
