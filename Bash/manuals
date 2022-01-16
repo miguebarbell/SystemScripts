@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# search for a manual an convert it to pdf for "better viewing"
+man -k . | dmenu -l 30 | awk '{print $1}' | xargs -r man -Tpdf | zathura -

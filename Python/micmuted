@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+import subprocess
+
+def get_mmute():
+    stat = "pulsemixer --get-mute --id `pulsemixer --list-sources | grep Default | awk '{print $3}' | sed 's/,//'`"
+    res = subprocess.check_output(stat, shell=True)
+    if '1' in str(res):
+        print('')
+    else:
+        print('')
+get_mmute()

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# choose a random wallpaper and set it
+#feh --recursive --bg-max --randomize ~/.local/share/BG/*
+# TODO: add a function tha in dmenu you can select a random BG or select oneBG or select one
+wall=$(find $XDG_DATA_HOME/BG -type f | shuf -n 1)
+feh --bg-fill $wall
+wal -i $wall > /dev/null
+
+# for dwm
+sed -i 'N;$!P;D' $XDG_CACHE_HOME/wal/colors-wal-dwm.h
+
+# for tabbed
+sed -i '5,$ d' $XDG_CACHE_HOME/wal/colors-wal-tabbed.h
+
+
+
+
+# redo everything
+(cd "$SUCKLESS_TEMPLATE/dwm-6.2" && sudo make clean install > /dev/null)
+(cd "$SUCKLESS_TEMPLATE/tabbed-0.6" && sudo make clean install > /dev/null)
