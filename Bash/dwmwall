@@ -13,9 +13,14 @@ sed -i 'N;$!P;D' $XDG_CACHE_HOME/wal/colors-wal-dwm.h
 # for tabbed
 sed -i '5,$ d' $XDG_CACHE_HOME/wal/colors-wal-tabbed.h
 
-
-
+# for dmenu
+light=`sed -n '16p' $XDG_CACHE_HOME/wal/colors`
+dark=`sed -n '1p' $XDG_CACHE_HOME/wal/colors`
+fg2=`sed -n '2p' $XDG_CACHE_HOME/wal/colors`
+fg1=`sed -n '14p' $XDG_CACHE_HOME/wal/colors`
+sed -i '/^\t\[SchemeOut.*/a \\t\[SchemeHp\] = { "'$dark'", "'$light'", }, \n\t\[SchemeSelHighlight\] = { "'$fg1'", "'$dark'" }, \n\t\[SchemeNormHighlight\] = { "'$dark'", "'$fg2'"},\n\t\[SchemeMid\] = { "'$light'", "'$dark'" },' $XDG_CACHE_HOME/wal/colors-wal-dmenu.h
 
 # redo everything
 (cd "$SUCKLESS_TEMPLATE/dwm-6.2" && sudo make clean install > /dev/null)
 (cd "$SUCKLESS_TEMPLATE/tabbed-0.6" && sudo make clean install > /dev/null)
+(cd "$SUCKLESS_TEMPLATE/dmenu-5.0" && sudo make clean install > /dev/null)

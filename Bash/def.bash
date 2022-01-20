@@ -1,5 +1,9 @@
-#TODO make a dmenu definition that show the definition of a specific word
-# https://dictionaryapi.dev/
-#As an example, to get definition of English word hello, you can send request to
+#TODO separate every definition
 
-#https://api.dictionaryapi.dev/api/v2/entries/en/hello
+word=$(echo -e | dmenu -p 'Search the definition of:')
+res=`curl -s https://api.dictionaryapi.dev/api/v2/entries/en/$word | jq '.[0]'`
+echo $word
+
+definition=`echo $res | jq '.meanings[].definitions[0].definition'`
+echo $definition
+echo -e "exit" | dmenu -p "$word: \n $definition"
