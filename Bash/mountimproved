@@ -1,0 +1,12 @@
+#!/usr/bin/sh
+NAME4VOLUME="improved"
+MOUNT_PATH="/home/t800/Improved"
+if [[ $(lsblk | grep $NAME4VOLUME)  ]]; then
+	echo "dismounting";
+		doas umount $MOUNT_PATH
+		doas cryptsetup luksClose $NAME4VOLUME
+	else
+		echo "mounting";
+		doas cryptsetup luksOpen /dev/nvme0n1p2 $NAME4VOLUME --key-file $IMPROVED_KEY
+		doas mount /dev/mapper/$NAME4VOLUME $MOUNT_PATH
+fi

@@ -1,4 +1,5 @@
 #TODO separate every definition
+# search for the definition of a desired word, with dictionaryapi
 
 word=$(echo -e | dmenu -p 'Search the definition of:')
 res=`curl -s https://api.dictionaryapi.dev/api/v2/entries/en/$word | jq '.[0]'`
