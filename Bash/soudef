@@ -1,4 +1,4 @@
 #!/bin/bash
-#pulsemixer --id `pulsemixer --list-sources | grep Default | awk '{print $3}' | sed 's/,//'` --toggle-mute
+pulsemixer --id `pulsemixer --list-sources | grep Default | awk '{print $3}' | sed 's/,//'` --toggle-mute
 
-amixer -D pulse set Master 1+ toggle
+#amixer -D pulse set Master 1+ toggle

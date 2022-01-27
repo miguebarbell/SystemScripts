@@ -20,6 +20,10 @@ fg2=`sed -n '2p' $XDG_CACHE_HOME/wal/colors`
 fg1=`sed -n '14p' $XDG_CACHE_HOME/wal/colors`
 sed -i '/^\t\[SchemeOut.*/a \\t\[SchemeHp\] = { "'$dark'", "'$light'", }, \n\t\[SchemeSelHighlight\] = { "'$fg1'", "'$dark'" }, \n\t\[SchemeNormHighlight\] = { "'$dark'", "'$fg2'"},\n\t\[SchemeMid\] = { "'$light'", "'$dark'" },' $XDG_CACHE_HOME/wal/colors-wal-dmenu.h
 
+# for notifications, add three variables to the xresources generated for pywal
+sed -n '3,5p' $XDG_CACHE_HOME/wal/colors.Xresources | sed 's/\*foreground/herbe\.font_color/; s/\*background/herbe\.background_color/; s/\*\.foreground/herbe\.border_color/'
+
+
 # redo everything
 (cd "$SUCKLESS_TEMPLATE/dwm-6.2" && sudo make clean install > /dev/null)
 (cd "$SUCKLESS_TEMPLATE/tabbed-0.6" && sudo make clean install > /dev/null)
