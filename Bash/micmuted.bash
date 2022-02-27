@@ -1,9 +1,9 @@
-# print the status of the bluetooth
-
 #!/bin/bash
-pulsemixer=`pulsemixer --list-sources | grep Default | awk '{print $3}' | sed 's/,//'`
+
+# print the status of the bluetooth
+pulsemixer=`pulsemixer --list-sources | grep Default | head -n 1 | awk '{print $3}' | sed 's/,//'`
 stat=`pulsemixer --get-mute --id $pulsemixer`
-if [[ "1" == $stat ]];
+if [[ $stat == "1" ]];
 then
 echo ''
 else
