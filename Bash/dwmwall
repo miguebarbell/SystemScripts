@@ -25,6 +25,7 @@ sed -n '3,5p' $XDG_CACHE_HOME/wal/colors.Xresources | sed 's/\*foreground/herbe\
 
 
 # redo everything
-(cd "$SUCKLESS_TEMPLATE/dwm-6.2" && sudo make clean install > /dev/null)
+(cd "$SUCKLESS_TEMPLATE/dwm" && sudo make clean install > /dev/null)
 (cd "$SUCKLESS_TEMPLATE/tabbed-0.6" && sudo make clean install > /dev/null)
 (cd "$SUCKLESS_TEMPLATE/dmenu-5.0" && sudo make clean install > /dev/null)
+(cd "$SUCKLESS_TEMPLATE/st-0.8.4" && sudo make clean install > /dev/null)
