@@ -7,8 +7,9 @@ if [ $(date +"%D") != $(tail -n 1 $CACHE_WORD) ]; then
 	CACHED_PAGE=$(curl -s https://www.dictionary.com/e/word-of-the-day/ > $CACHE_WORD)
 	WOD=`grep 'data-title' $CACHE_WORD | sed 1q | grep -o '".*"' | sed -e 's/"//g'`
 	TYPE=`grep 'luna-pos' $CACHE_WORD | sed 1q | cut -d'>' -f 2 | cut -d '<' -f 1`
-	DEFINITION=`grep 'luna-example italic' $CACHE_WORD | cut -d '>' -f 2 | cut -d '<' -f 1`
+	DEFINITION=`cat $CACHE_WORD | pup 'p json{}' | jq '.[1].text'`
 	truncate -s 0 $CACHE_WORD
 	echo $WOD \($TYPE\): $DEFINITION > $CACHE_WORD
+	echo $DEFINITION
 	date +"%D" >> $CACHE_WORD
 fi
