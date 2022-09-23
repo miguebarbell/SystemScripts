@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+file=$(echo "$@" | sed 's\file://\\g')
+name=$(echo "$file" | rev | cut -d'/' -f 1 | rev)
+calcurse -i "$file" && notify-send "Calcurse Added $name"

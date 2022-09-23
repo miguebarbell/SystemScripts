@@ -6,5 +6,5 @@ file="$tempdir/$(basename "$1")"
 [ "$(uname)" = "Darwin" ] && opener="open" || opener="setsid -f xdg-open"
 mkdir -p "$tempdir"
 cp -f "$1" "$file"
-$opener "$file" >/dev/null 2>&1
+$OPENER "$file" >/dev/null 2>&1
 find "${tempdir:?}" -mtime +1 -type f -delete
