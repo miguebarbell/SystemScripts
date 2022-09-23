@@ -36,7 +36,6 @@ fn main() {
     let mut colors = vec![Candy];
     if option == "simple" {
         let random_number_of_colors = rng.gen_range(1..=3);
-        println!("number of random colors: {}", random_number_of_colors);
         if random_number_of_colors == 1 {
             font = one_color_fonts[rng.gen_range(0..one_color_fonts.len())].clone();
             colors = get_random_colors(1);
