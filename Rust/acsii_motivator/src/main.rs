@@ -10,17 +10,14 @@ use itertools::Itertools;
 use rand::Rng;
 
 fn main() {
-    // this accept and array of words, and randomly style and print the word in the console.
     let args: Vec<String> = env::args().collect();
     if args.len() == 1 {
         println!("Must provide a word!");
-        return
+        return;
     }
-    //args.remove(0);
     let mut rng = rand::thread_rng();
     let random_index = rng.gen_range(1..args.len());
     let selected_word = &args[random_index];
-    // generate a random style
     let one_color_fonts = [
         FontTiny,
         FontSimple,
@@ -38,7 +35,6 @@ fn main() {
     let mut font: Fonts = FontTiny;
     let mut colors = vec![Candy];
     if option == "simple" {
-        // select a font
         let random_number_of_colors = rng.gen_range(1..=3);
         println!("number of random colors: {}", random_number_of_colors);
         if random_number_of_colors == 1 {
@@ -96,12 +92,9 @@ fn main() {
         }
         unique_colors_index
             .into_iter()
-            .map(|index| available_colours[index].clone()).collect()
+            .map(|index| available_colours[index].clone())
+            .collect()
     }
-    // println!("selected word: {:?}", selected_word);
-    // println!("font: {:?}", font);
-    // println!("colors: {:?}", colors);
-    // println!("option: {}", option);
     let output = render(Options {
         text: selected_word.to_string(),
         font,
