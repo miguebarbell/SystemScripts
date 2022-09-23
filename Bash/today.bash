@@ -2,6 +2,7 @@
 # this scrapp an quote and put it in a file in your cache directory as todayquoteo
 # verify if the last line contain todays date, and if not, fetch it from internet.
 CACHE_QUOTE="$HOME/.cache/todayquote"
+if [ ! -f $CACHE_QUOTE ]; then touch $CACHE_QUOTE; fi
 if [[ $(date +"%D") != $(tail -n 1 $CACHE_QUOTE) ]]; then
 	#sed -i '$ d' $CACHE_QUOTE
 	truncate -s 0 $CACHE_QUOTE
