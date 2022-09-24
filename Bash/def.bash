@@ -1,3 +1,7 @@
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 #TODO separate every definition
 # search for the definition of a desired word, with dictionaryapi
 

@@ -1,4 +1,8 @@
 #!/usr/bin/sh
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 # scrap for the word of today at dictionary.com, make just one request, save the page content in the cache file, then scrape the necesary information and erase the cache file with the right information, then add the date
 # verify if the last line contain todays date, and if not, fetch it from internet.
 CACHE_WORD="$HOME/.cache/todayword"

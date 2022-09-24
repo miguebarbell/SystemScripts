@@ -1,5 +1,9 @@
 #!/bin/sh
 
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 if echo "$1" | grep -q "https*://\S\+\.[A-Za-z]\+\S*" ; then
 	url="$1"
 else

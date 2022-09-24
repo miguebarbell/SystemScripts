@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 shopt -s nullglob globstar
 
 typeit=0

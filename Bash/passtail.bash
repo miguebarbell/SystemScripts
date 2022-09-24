@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 path="$1"
 passfile="$PREFIX/$path.gpg"
 check_sneaky_paths "$path"

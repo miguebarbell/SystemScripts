@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 pulsemixer --id `pulsemixer --list-sources | grep Default | awk '{print $3}' | sed 's/,//'` --toggle-mute
 
 #amixer -D pulse set Master 1+ toggle
