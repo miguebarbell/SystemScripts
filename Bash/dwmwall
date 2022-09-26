@@ -1,4 +1,6 @@
 #!/bin/sh
+#set -v
+#set -x
 
 # choose a random wallpaper and set it
 #feh --recursive --bg-max --randomize ~/.local/share/BG/*
@@ -17,29 +19,34 @@ else
 	fi
 fi
 
-# for dwm
-sed -i 'N;$!P;D' "$XDG_CACHE_HOME"/wal/colors-wal-dwm.h
-sed -i '/\[SchemeNorm.*/a \
-\t\[SchemeWarn\] =	 { "#000000", "#ffff00", "#ff0000" }, \
-\t\[SchemeUrgent\]=	 { "#ffffff", "#ff0000", "#ff0000" },' $XDG_CACHE_HOME/wal/colors-wal-dwm.h
+mv "$HOME/.fehbg" "$XDG_CONFIG_HOME/fehbg"
 
-# for tabbed
-sed -i '5,$ d' "$XDG_CACHE_HOME"/wal/colors-wal-tabbed.h
 
-# for dmenu
-#light=$(sed -n '16p' "$XDG_CACHE_HOME"/wal/colors)
-dark=$(sed -n '1p' "$XDG_CACHE_HOME"/wal/colors)
-fg2=$(sed -n '2p' "$XDG_CACHE_HOME"/wal/colors)
-fg1=$(sed -n '14p' "$XDG_CACHE_HOME"/wal/colors)
-sed -i '/^\t\[SchemeOut.*/a \\t\[SchemeSelHighlight\] = { "'$fg1'", "'$dark'" }, \n\t\[SchemeNormHighlight\] = { "'$dark'", "'$fg2'" },' "$XDG_CACHE_HOME"/wal/colors-wal-dmenu.h
-#sed -i '/^\t\[SchemeOut.*/a \\t\[SchemeHp\] = { "'$dark'", "'$light'", }, \n\t\[SchemeSelHighlight\] = { "'$fg1'", "'$dark'" }, \n\t\[SchemeNormHighlight\] = { "'$dark'", "'$fg2'"},\n\t\[SchemeMid\] = { "'$light'", "'$dark'" },' $XDG_CACHE_HOME/wal/colors-wal-dmenu.h
 
-# for notifications, add three variables to the xresources generated for pywal
-#sed -n '3,5p' $XDG_CACHE_HOME/wal/colors.Xresources | sed 's/\*foreground/herbe\.font_color/; s/\*background/herbe\.background_color/; s/\*\.foreground/herbe\.border_color/'
+## for dwm
+#sed -i 'N;$!P;D' "$XDG_CACHE_HOME"/wal/colors-wal-dwm.h
+#sed -i '/\[SchemeNorm.*/a \
+#\t\[SchemeWarn\] =	 { "#000000", "#ffff00", "#ff0000" }, \
+#\t\[SchemeUrgent\]=	 { "#ffffff", "#ff0000", "#ff0000" },' $XDG_CACHE_HOME/wal/colors-wal-dwm.h
+
+## for tabbed
+#sed -i '5,$ d' "$XDG_CACHE_HOME"/wal/colors-wal-tabbed.h
+
+## for dmenu
+##light=$(sed -n '16p' "$XDG_CACHE_HOME"/wal/colors)
+#dark=$(sed -n '1p' "$XDG_CACHE_HOME"/wal/colors)
+#fg2=$(sed -n '2p' "$XDG_CACHE_HOME"/wal/colors)
+#fg1=$(sed -n '14p' "$XDG_CACHE_HOME"/wal/colors)
+#sed -i '/^\t\[SchemeOut.*/a \\t\[SchemeSelHighlight\] = { "'$fg1'", "'$dark'" }, \n\t\[SchemeNormHighlight\] = { "'$dark'", "'$fg2'" },' "$XDG_CACHE_HOME"/wal/colors-wal-dmenu.h
+##sed -i '/^\t\[SchemeOut.*/a \\t\[SchemeHp\] = { "'$dark'", "'$light'", }, \n\t\[SchemeSelHighlight\] = { "'$fg1'", "'$dark'" }, \n\t\[SchemeNormHighlight\] = { "'$dark'", "'$fg2'"},\n\t\[SchemeMid\] = { "'$light'", "'$dark'" },' $XDG_CACHE_HOME/wal/colors-wal-dmenu.h
+
+## for notifications, add three variables to the xresources generated for pywal
+##sed -n '3,5p' $XDG_CACHE_HOME/wal/colors.Xresources | sed 's/\*foreground/herbe\.font_color/; s/\*background/herbe\.background_color/; s/\*\.foreground/herbe\.border_color/'
 
 
 # redo everything
 (cd "$SUCKLESS_TEMPLATE/dwm" && sudo make clean install > /dev/null)
-(cd "$SUCKLESS_TEMPLATE/tabbed" && sudo make clean install > /dev/null)
+#(cd "$SUCKLESS_TEMPLATE/tabbed" && sudo make clean install > /dev/null)
 (cd "$SUCKLESS_TEMPLATE/dmenu" && sudo make clean install > /dev/null)
-(cd "$SUCKLESS_TEMPLATE/st" && sudo make clean install > /dev/null)
+#(cd "$SUCKLESS_TEMPLATE/st" && sudo make clean install > /dev/null)
+dunstify "DWMwall" "Successfully!"
