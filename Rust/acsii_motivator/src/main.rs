@@ -1,5 +1,5 @@
 /*
-sa Copyright (c) 2022. Miguel R.
+Copyright (c) 2022. Miguel R.
 */
 
 use cfonts::Colors::*;
