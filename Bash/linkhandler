@@ -1,5 +1,9 @@
 #!/bin/sh
 
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 # Feed script a url or file location.
 # If an image, it will view in sxiv,
 # if a video or gif, it will view in mpv

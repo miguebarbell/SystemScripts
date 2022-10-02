@@ -1,14 +1,21 @@
-use std::env;
+/*
+Copyright (c) 2022. Miguel R.
+*/
 
-use cfonts::{Align, Colors, Fonts, Options, render};
 use cfonts::Colors::*;
 use cfonts::Fonts::{
     Font3d, FontBlock, FontChrome, FontConsole, FontGrid, FontHuge, FontPallet, FontShade,
     FontSimple, FontSimple3d, FontSimpleBlock, FontSlick, FontTiny,
 };
+use cfonts::{render, Align, Colors, Fonts, Options};
 use itertools::Itertools;
 use rand::Rng;
+use std::env;
 
+/// # Generate a ACSII art from the randomness
+///
+/// from the command line, you put several words, and the app will chose it with a random style on
+/// it.
 fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() == 1 {
@@ -63,6 +70,7 @@ fn main() {
         font = all_fonts_for_gradient[rng.gen_range(0..all_fonts_for_gradient.len())].clone();
         colors = get_random_colors(rng.gen_range(1..15))
     }
+    /// Generate an array of random and unique colors.
     fn get_random_colors(quantity: usize) -> Vec<Colors> {
         let mut rng = rand::thread_rng();
         let available_colours = [

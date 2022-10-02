@@ -1,4 +1,8 @@
 #!/usr/bin/sh
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 NAME4VOLUME="improved"
 MOUNT_PATH="/home/t800/Improved"
 if [[ $(lsblk | grep $NAME4VOLUME)  ]]; then

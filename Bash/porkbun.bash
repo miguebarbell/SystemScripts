@@ -1,4 +1,8 @@
 
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 API_Key="pk1_14b068af2ff016444a9cdcbe8248c82d8eb94c5983c8ce370f74624bb02965c6"
 Secret_Key="sk1_e9c96e57c55b1199759b78db861984c3cedade2e6bba5c44adec4849e366fd31"
 JSON=$(jq -n \

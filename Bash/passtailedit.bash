@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 [[ $# -ne 1 ]] && die "Usage: $PROGRAM $COMMAND pass-name"
 
 path="${1%/}"

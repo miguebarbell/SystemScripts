@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 REVERSE="\x1b[7m"
 RESET="\x1b[m"
 

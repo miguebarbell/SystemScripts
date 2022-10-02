@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 # https://github.com/onespaceman/menu-calc
 # Calculator for use with rofi/dmenu(2)
 # Copying to the clipboard requires xclip

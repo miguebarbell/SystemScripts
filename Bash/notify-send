@@ -1,4 +1,8 @@
 #!/bin/sh
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 # Shell script to redirect notify-send calls to herbe. The purpose is to ignore
 # options passed to notify-send.
 #

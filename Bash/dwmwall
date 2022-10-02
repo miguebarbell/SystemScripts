@@ -2,6 +2,10 @@
 #set -v
 #set -x
 
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 # choose a random wallpaper and set it
 #feh --recursive --bg-max --randomize ~/.local/share/BG/*
 

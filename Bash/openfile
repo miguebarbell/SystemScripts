@@ -1,5 +1,9 @@
 #!/bin/sh
 
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 # Helps open a file with xdg-open from mutt in a external program without weird side effects.
 tempdir="${XDG_CACHE_HOME:-$HOME/.cache}/mutt/files"
 file="$tempdir/$(basename "$1")"

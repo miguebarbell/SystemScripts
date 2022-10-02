@@ -1,4 +1,8 @@
 #!/usr/bin/sh
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 # this scrapp an quote and put it in a file in your cache directory as todayquoteo
 # verify if the last line contain todays date, and if not, fetch it from internet.
 CACHE_QUOTE="$HOME/.cache/todayquote"

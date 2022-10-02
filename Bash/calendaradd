@@ -1,4 +1,8 @@
 #!/usr/bin/sh
+#
+# Copyright (c) 2022. Miguel R.
+#
+
 file=$(echo "$@" | sed 's\file://\\g')
 name=$(echo "$file" | rev | cut -d'/' -f 1 | rev)
 calcurse -i "$file" && dunstify "Calcurse Added $name"
