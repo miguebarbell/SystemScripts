@@ -1,0 +1,13 @@
+#!/bin/sh
+# These are inherited from Transmission.    
+# Do not declare these. Just use as needed. 
+                                           
+# TR_APP_VERSION                            
+# TR_TIME_LOCALTIME                         
+# TR_TORRENT_DIR                            
+# TR_TORRENT_HASH                           
+# TR_TORRENT_ID                             
+# TR_TORRENT_NAME                           
+                                            
+# send a notification for 10s with theme low
+notify-send -t 10000 -u low "🔽 Torrent finished." "$TR_TORRENT_NAME"
