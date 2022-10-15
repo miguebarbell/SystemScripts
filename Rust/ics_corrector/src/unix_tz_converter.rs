@@ -147,3 +147,26 @@ pub fn convert_tz(tz: &str) -> &str {
         map.get(tz).unwrap()
     }
 }
+#[cfg(test)]
+mod tests {
+    use crate::tz_checker::unix_tz_converter::convert_tz;
+
+    #[test]
+    fn samoa_to_pacific() {
+        assert_eq!(convert_tz("Samoa Standard Time"), "Pacific/Apia");
+    }
+    #[test]
+    fn eastern_to_ny() {
+        assert_eq!(convert_tz("Eastern Standard Time"), "America/New_York");
+    }
+
+    #[test]
+    fn easternmx_to_cancun() {
+        assert_eq!(
+            convert_tz("Eastern Standard Time (Mexico)"),
+            "America/Cancun"
+        );
+    }
+    // map.insert("Eastern Standard Time (Mexico)", "America/Cancun");
+    // map.insert("Eastern Standard Time", "America/New_York");
+}
