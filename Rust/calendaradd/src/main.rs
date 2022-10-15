@@ -3,7 +3,7 @@ mod unix_tz_converter;
 use std::env;
 use std::fs;
 fn main() {
-    let args: Vec<String> = env::args().skip(2).collect();
+    let args: Vec<String> = env::args().skip(1).collect();
     let file_path = args.join(" ");
     let invitation = fs::read_to_string(file_path).unwrap();
     let lines: Vec<&str> = invitation.split('\n').collect();
