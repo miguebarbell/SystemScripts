@@ -1,5 +1,5 @@
 [package]
-name = "calendaradd"
+name = "ics_corrector"
 version = "0.1.0"
 edition = "2021"
 authors = ["Miguel <miguel@debloat.us>"]

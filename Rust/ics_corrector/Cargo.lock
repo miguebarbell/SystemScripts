@@ -20,13 +20,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
 
 [[package]]
-name = "calendaradd"
-version = "0.1.0"
-dependencies = [
- "clap",
-]
-
-[[package]]
 name = "clap"
 version = "4.0.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -76,6 +69,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "62b467343b94ba476dcb2500d242dadbb39557df889310ac77c5d99100aaac33"
 dependencies = [
  "libc",
+]
+
+[[package]]
+name = "ics_corrector"
+version = "0.1.0"
+dependencies = [
+ "clap",
 ]
 
 [[package]]
