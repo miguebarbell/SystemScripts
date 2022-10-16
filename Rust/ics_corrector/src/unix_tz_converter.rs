@@ -148,7 +148,7 @@ pub fn convert_tz(tz: &str) -> &str {
     }
 }
 #[cfg(test)]
-mod tests {
+mod convertion_tz {
     use crate::tz_checker::unix_tz_converter::convert_tz;
 
     #[test]

@@ -4,7 +4,7 @@ use std::env;
 fn main() {
     let args: Vec<String> = env::args().skip(1).collect();
     let file_path = args.join(" ");
-    tz_checker::check_ics(file_path);
+    println!("{}", tz_checker::check_ics(file_path));
 }
 
 #[cfg(test)]
