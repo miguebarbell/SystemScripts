@@ -4,5 +4,14 @@
 #
 
 file=$(echo "$@" | sed 's\file://\\g')
-name=$(echo "$file" | rev | cut -d'/' -f 1 | rev)
-calcurse -i "$file" && dunstify "Calcurse Added $name"
+# check for ms timezones
+generated_ics="/tmp/cal"
+description=$(cat "$generated_ics" | rg SUMMARY | cut -d':' -f 2)
+tz=$(cat "$generated_ics" | rg -m 1 TZID | cut -d':' -f 2)
+start=$(cat "$generated_ics" | rg "DTSTART;TZID" | cut -d':' -f 2)
+end=$(cat "$generated_ics" | rg "DTEND;TZID" | cut -d':' -f 2 )
+ics_corrector $file > $generated_ics && calcurse -i $generated_ics && notify-send "Calcurse" "$description\
+\nDate: ${start:0:4}-${start:4:2}-${start:6:2} \
+\nStart ${start:9:2}:${start:11:2}\
+\nEnd ${end:9:2}:${end:11:2}\
+\n$tz"
