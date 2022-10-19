@@ -5,12 +5,12 @@ pub fn run_a_dice() -> u8 {
 }
 
 pub fn run_dices(quantity: u8) -> Vec<u8> {
-    let dices: Vec<u8> = Vec::with_capacity(quantity.into());
-    dices.iter().map(|_| run_a_dice()).collect()
-    // for i in 0..dices.len() {
-    //     dices[i] = run_a_dice();
-    // }
-    // dices
+    let mut dices: Vec<u8> = Vec::with_capacity(quantity.into());
+    for _ in 0..quantity {
+        println!("{:?}", run_a_dice());
+        dices.push(run_a_dice());
+    }
+    dices
 }
 
 #[cfg(test)]
