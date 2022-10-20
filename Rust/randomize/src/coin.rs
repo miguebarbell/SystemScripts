@@ -1,9 +1,12 @@
+use crate::args::RuletteOptions;
 use crate::ruleta;
 pub fn flip_coin() -> String {
     let heads = "heads".to_string();
     let tails = "tails".to_string();
-    let coin_options: Vec<&String> = [&heads, &tails].to_vec();
-    ruleta::ruleta(coin_options).to_string()
+    let coin_options: RuletteOptions = RuletteOptions {
+        options: [heads, tails].to_vec(),
+    };
+    ruleta::ruleta(&coin_options).to_string()
 }
 
 #[cfg(test)]

@@ -1,19 +1,22 @@
 use rand::Rng;
+
+use crate::args::DiceOptions;
 pub fn run_a_dice() -> u8 {
     let mut rng = rand::thread_rng();
     rng.gen_range(1..=6)
 }
 
-pub fn run_dices(quantity: u8) -> Vec<u8> {
-    let mut dices: Vec<u8> = Vec::with_capacity(quantity.into());
-    for _ in 0..quantity {
-        dices.push(run_a_dice());
+pub fn run_dices(DiceOptions { number: dices }: &DiceOptions) -> Vec<u8> {
+    let mut dices_result: Vec<u8> = Vec::with_capacity(usize::from(*dices));
+    for _ in 0..*dices {
+        dices_result.push(run_a_dice());
     }
-    dices
+    dices_result
 }
 
 #[cfg(test)]
 mod dice_test {
+    use crate::args::DiceOptions;
     use crate::dice::run_a_dice;
     use crate::dice::run_dices;
     #[test]
@@ -24,7 +27,8 @@ mod dice_test {
     }
     #[test]
     fn get_3_dices() {
-        let dices = run_dices(3);
+        let dice_options: DiceOptions = DiceOptions { number: (3) };
+        let dices = run_dices(&dice_options);
         let dice_options: [u8; 6] = [1, 2, 3, 4, 5, 6];
         dices.iter().for_each(|x| assert!(dice_options.contains(x)))
     }
