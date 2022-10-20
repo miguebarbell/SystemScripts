@@ -7,7 +7,6 @@ pub fn run_a_dice() -> u8 {
 pub fn run_dices(quantity: u8) -> Vec<u8> {
     let mut dices: Vec<u8> = Vec::with_capacity(quantity.into());
     for _ in 0..quantity {
-        println!("{:?}", run_a_dice());
         dices.push(run_a_dice());
     }
     dices

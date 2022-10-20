@@ -1,11 +1,8 @@
 use rand::Rng;
 
 pub fn ruleta(options: Vec<&String>) -> &String {
-    // options.get(0).unwrap()
-
     let mut rng = rand::thread_rng();
     options[rng.gen_range(0..options.len())]
-    // choose(&mut rand::thread_rng())
 }
 
 #[cfg(test)]
