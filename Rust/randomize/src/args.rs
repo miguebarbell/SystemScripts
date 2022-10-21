@@ -30,5 +30,5 @@ pub struct DiceOptions {
 #[derive(Args, Debug)]
 pub struct RuletteOptions {
     #[arg(short = 'o', long = "options")]
-    pub options: Vec<String>,
+    pub options: String,
 }
