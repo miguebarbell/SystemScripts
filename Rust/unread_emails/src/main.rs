@@ -1,27 +1,31 @@
-fn main() {
-    println!("Hello, world!");
-}
+use std::env;
+use std::fs;
 
-// #!/usr/bin/sh
-//
-// eval "mbsync -c /home/rev9/.config/isync/mbsyncrc -a"
-//
-// # Displays number of unread mail and an loading icon if updating.
-// # When clicked, brings up `neomutt`.
-//
-// case $BUTTON in
-//   1)  notify-send -r 4 -u low "Mail Module" "Syncing Mailboxes" &&  eval "mbsync -c /home/rev9/.config/isync/mbsyncrc -a" >/dev/null 2>&1 && notify-send -r 4 -t 15000 "Mail Module" "No new messages" ;;
-//   2) "$TERMINAL" -e "$EDITOR" "$0" ;;
-//   3) "$TERMINAL" -e neomutt ;;
-// esac
-//
-// unread="$(find "$HOME"/Reserved/mail/*/[Ii][Nn][Bb][Oo][Xx]/new/* -type f | wc -l 2>/dev/null)"
-//
-// #mbsync >/dev/null 2>&1 && icon="🔃"
-// if [ "$unread" = "0" ]; then
-//   echo "📭"
-//   # notify-send -r 4 -u low "Mail Module" "$message"
-// else
-//   echo "$unread💌"
-//   notify-send -r 4 -t 15000 "Mail Module" "$unread new 💌"
-// fi
+fn main() {
+    let mut args = env::args().collect::<Vec<String>>();
+    args.remove(0);
+    let mut emails_path = String::new();
+    if !args.is_empty() {
+        emails_path.push_str(args.join(" ").as_str())
+    } else {
+        emails_path.push_str("/home/t800/.local/share/mail/redpills/INBOX/new")
+    };
+    let files = match fs::read_dir(&emails_path) {
+        Ok(num) => num,
+        Err(_) => panic!("Provided a bad path."),
+    };
+    for file in files {
+        let file_path = file.unwrap().path();
+        let file_raw = fs::read_to_string(file_path).unwrap();
+        let file_array = file_raw.split('\n');
+        for line in file_array {
+            if line.contains("From:") && line.split(':').collect::<Vec<&str>>()[0] == "From" {
+                println!();
+                println!("{:?}", line)
+            }
+            if line.contains("Subject:") && line.split(':').collect::<Vec<&str>>()[0] == "Subject" {
+                println!("{:?}", line);
+            }
+        }
+    }
+}
