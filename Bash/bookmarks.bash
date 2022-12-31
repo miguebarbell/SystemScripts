@@ -7,6 +7,10 @@ clean_file() {
 }
 # check for the file, if not create it
 FILE="$XDG_DATA_HOME"/bookmarks
+SYNC_FOLDER="/home/$USER/pCloudDrive/Miguel/sync/"
+sync() {
+	rsync "$FILE" "$SYNC_FOLDER"
+}
 if [ ! -f "$FILE" ]; then
 	touch "$FILE"
 	echo "$HELP" > "$FILE"
@@ -16,19 +20,23 @@ fi
 
 SELECTION=$(sed '1i use ADD or EDIT' "$FILE" | rofi -dmenu -p 'Select for copy')
 
+# NOTE: Everytime you add or edit the file, it will try to sync it
 if [ "$SELECTION" = "add" ]; then
 	NEW_BOOKMARK=$(rofi -dmenu -p 'Adding new Bookmark')
 	echo -e "$NEW_BOOKMARK" >> "$FILE"
+	sync
 	 sh "$0"
  elif [ "$SELECTION" = "edit" ]; then
 	 $TERMINAL -e "$EDITOR" "$FILE"
 	 $SELECTION
+	 sync
+	 sh "$0"
 elif [ "$SELECTION" = "" ]; then
 	# clean exit
 	exit 0
 else
-	echo $SELECTION
+	# echo "$SELECTION"
 	xdotool type "$SELECTION"
-	echo "$SELECTION" | xclip
+	echo "$SELECTION" | xclip 
 	exit 0
 fi
