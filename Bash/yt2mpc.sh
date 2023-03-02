@@ -11,10 +11,10 @@ if [ "$VIDEO" = "" ]; then
 	exit 1
 fi
 
-FORMAT=$(youtube-dl -F "$VIDEO" | cut -d',' -f 1 | tail -n +4 | dmenu -p "Available formats (wait for the response)" | cut -d' ' -f 1 | sed 's/ //g')
+FORMAT=$(yt-dlp -F "$VIDEO" | cut -d',' -f 1 | tail -n +4 | dmenu -p "Available formats (wait for the response)" | cut -d' ' -f 1 | sed 's/ //g')
 
 if [ "$FORMAT" = "" ]; then
 	exit 1
 fi
 
-youtube-dl --prefer-insecure -g -f"$FORMAT" "$VIDEO" | mpc insert && mpc next
+yt-dlp --prefer-insecure -g -f"$FORMAT" "$VIDEO" | mpc insert && mpc next
