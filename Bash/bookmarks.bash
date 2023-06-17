@@ -20,14 +20,14 @@ else
 fi
 
 SELECTION=$(sed '1i use ADD or EDIT' "$FILE" | rofi -dmenu -p 'Select for copy')
-
+selection=${SELECTION,,}
 # NOTE: Everytime you add or edit the file, it will try to sync it
-if [ "$SELECTION" = "add" ]; then
+if [ "$selection" = "add" ]; then
 	NEW_BOOKMARK=$(rofi -dmenu -p 'Adding new Bookmark')
-	echo -e "$NEW_BOOKMARK" >>"$FILE"
+	echo -e "$NEW_BOOKMARK" >> "$FILE"
 	# sync
 	sh "$0"
-elif [ "$SELECTION" = "edit" ]; then
+elif [ "$selection" = "edit" ]; then
 	$TERMINAL -e "$EDITOR" "$FILE"
 	$SELECTION
 	# sync
