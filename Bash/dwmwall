@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 #set -v
 #set -x
 
@@ -44,11 +44,15 @@
 ## for notifications, add three variables to the xresources generated for pywal
 ##sed -n '3,5p' $XDG_CACHE_HOME/wal/colors.Xresources | sed 's/\*foreground/herbe\.font_color/; s/\*background/herbe\.background_color/; s/\*\.foreground/herbe\.border_color/'
 
+HOME=/home/t800
+SUCKLESS_TEMPLATE="$HOME"/Documents/Artix
+XDG_CONFIG_HOME="$HOME"/.config
+
 # redo everything
-wal -i .local/share/BG/ --backend colorz &&
-	(cd "$SUCKLESS_TEMPLATE/dwm" && sudo make clean install >/dev/null) &&
-	mv "$HOME/.fehbg" "$XDG_CONFIG_HOME/fehbg" &&
-	#(cd "$SUCKLESS_TEMPLATE/tabbed" && sudo make clean install > /dev/null)
-	# (cd "$SUCKLESS_TEMPLATE/dmenu" && sudo make clean install > /dev/null)
-	#(cd "$SUCKLESS_TEMPLATE/st" && sudo make clean install > /dev/null)
-	dunstify "DWMwall" "Successfully!"
+# wal -i "$HOME"/.local/share/BG/ --backend colorz &&
+(cd "$SUCKLESS_TEMPLATE"/dwm && sudo make clean install) &&
+mv "$HOME"/.fehbg "$XDG_CONFIG_HOME"/fehbg
+#(cd "$SUCKLESS_TEMPLATE/tabbed" && sudo make clean install > /dev/null)
+# (cd "$SUCKLESS_TEMPLATE/dmenu" && sudo make clean install > /dev/null)
+#(cd "$SUCKLESS_TEMPLATE/st" && sudo make clean install > /dev/null)
+# dunstify "DWMwall" "Successfully!"
