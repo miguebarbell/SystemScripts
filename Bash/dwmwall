@@ -44,9 +44,12 @@
 ## for notifications, add three variables to the xresources generated for pywal
 ##sed -n '3,5p' $XDG_CACHE_HOME/wal/colors.Xresources | sed 's/\*foreground/herbe\.font_color/; s/\*background/herbe\.background_color/; s/\*\.foreground/herbe\.border_color/'
 
-HOME=/home/t800
-SUCKLESS_TEMPLATE="$HOME"/Documents/Artix
-XDG_CONFIG_HOME="$HOME"/.config
+# SUCKLESS_TEMPLATE="$HOME"/Documents/Artix
+# SUCKLESS_TEMPLATE="$HOME"/Documents/Artix
+# SUCKLESS_TEMPLATE="$HOME"/Documents/Artix
+HOME=/home/rev8
+XDG_CONFIG_HOME="$HOME/.config/"
+SUCKLESS_TEMPLATE="$HOME/Development/System/Suckless/"
 
 # redo everything
 # wal -i "$HOME"/.local/share/BG/ --backend colorz &&
