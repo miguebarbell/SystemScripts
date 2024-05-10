@@ -9,7 +9,7 @@ if [[ $1 == "--type" ]]; then
 fi
 
 if [[ -n $WAYLAND_DISPLAY ]]; then
-	dmenu=dmenu-wl
+	dmenu=dmenu
 	xdotool="ydotool type --file -"
 elif [[ -n $DISPLAY ]]; then
 	dmenu=dmenu
@@ -20,19 +20,27 @@ else
 fi
 
 prefix=${PASSWORD_STORE_DIR-~/.password-store}
-password_files=( "$prefix"/**/*.gpg )
-password_files=( "${password_files[@]#"$prefix"/}" )
-password_files=( "${password_files[@]%.gpg}" )
+password_files=("$prefix"/**/*.gpg)
+password_files=("${password_files[@]#"$prefix"/}")
+password_files=("${password_files[@]%.gpg}")
 
 password=$(printf '%s\n' "${password_files[@]}" | "$dmenu" "$@")
 
 [[ -n $password ]] || exit
 
 if [[ $typeit -eq 0 ]]; then
-	echo "here should be the modification"
-	pass show -c "$password" 2>/dev/null
-	xdotool type $(pass show "$password" | tail -n +2 | dmenu -p "The password for $password is already copied to your clipboard")
-else
-	pass show "$password" | { IFS= read -r pass; printf %s "$pass"; } | $xdotool
-fi
 
+	if [[ -n $WAYLAND_DISPLAY ]]; then
+		pass "$password" | head -n 1 | wl-copy
+		ydotool type $(pass show "$password" | tail -n +2 | dmenu -p "The password for $password is already copied to your clipboard")
+	else
+		pass show -c "$password" 2>/dev/null
+		xdotool type $(pass show "$password" | tail -n +2 | dmenu -p "The password for $password is already copied to your clipboard")
+	fi
+	# ydotool type $(pass show "$password" | tail -n +2 | dmenu -p "The password for $password is already copied to your clipboard")
+else
+	pass show "$password" | {
+		IFS= read -r pass
+		printf %s "$pass"
+	} | $xdotool type
+fi

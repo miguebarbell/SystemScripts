@@ -2,7 +2,7 @@
 
 # NOTE: type edit or add to add/edit a new entry
 clean_file() {
-	CLEANED_DATA=$(cat $1 | uniq)
+	CLEANED_DATA=$(cat "$1" | uniq)
 	echo "$CLEANED_DATA" >"$1"
 }
 # check for the file, if not create it
@@ -37,7 +37,7 @@ elif [ "$SELECTION" = "" ]; then
 	exit 0
 else
 	# echo "$SELECTION"
-	xdotool type "$SELECTION"
-	echo "$SELECTION" | xclip
+	ydotool type "$SELECTION"
+	echo "$SELECTION" | wl-copy
 	exit 0
 fi

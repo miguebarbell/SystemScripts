@@ -1,2 +1,4 @@
-/.idea/
-/Rust/*/target/
+.idea/
+Rust/*/target/
+Suckless/
+
