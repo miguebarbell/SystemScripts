@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+
+main() {
+    gtts-cli "$1" | ffplay -v 0 -nodisp -autoexit -
+}
+
+for arg in "$@"; do
+    TEXT="$TEXT $arg"
+done
+
+if [ ! -z "$TEXT" -a "$TEXT" != " " ]; then
+    main "$TEXT"
+else
+    while true; do
+        read -p "TTS (q to exit): " TEXT
+        if [ "$TEXT" = "q" ]; then
+            echo "Bye"
+            break
+        else
+            main "$TEXT"
+        fi
+    done
+fi

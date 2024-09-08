@@ -24,7 +24,7 @@ password_files=("$prefix"/**/*.gpg)
 password_files=("${password_files[@]#"$prefix"/}")
 password_files=("${password_files[@]%.gpg}")
 
-password=$(printf '%s\n' "${password_files[@]}" | "$dmenu" "$@")
+password=$(printf '%s\n' "${password_files[@]}" | "$dmenu" "$@" -p "search")
 
 [[ -n $password ]] || exit
 
@@ -32,7 +32,8 @@ if [[ $typeit -eq 0 ]]; then
 
 	if [[ -n $WAYLAND_DISPLAY ]]; then
 		pass "$password" | head -n 1 | wl-copy
-		ydotool type $(pass show "$password" | tail -n +2 | dmenu -p "The password for $password is already copied to your clipboard")
+		# ydotool type $(pass show "$password" | tail -n +2 | dmenu -p "The password for $password is already copied to your clipboard")
+		wtype $(pass show "$password" | tail -n +2 | dmenu -p "The password for $password is already copied to your clipboard")
 	else
 		pass show -c "$password" 2>/dev/null
 		xdotool type $(pass show "$password" | tail -n +2 | dmenu -p "The password for $password is already copied to your clipboard")

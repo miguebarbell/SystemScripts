@@ -37,7 +37,8 @@ elif [ "$SELECTION" = "" ]; then
 	exit 0
 else
 	# echo "$SELECTION"
-	ydotool type "$SELECTION"
+	wtype "$SELECTION"
+	# ydotool type "$SELECTION"
 	echo "$SELECTION" | wl-copy
 	exit 0
 fi
